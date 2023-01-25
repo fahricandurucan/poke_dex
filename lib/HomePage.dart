@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:poke_dex/dataHelper/PokemonApi.dart';
+import 'package:poke_dex/models/Pokemon.dart';
+import 'package:poke_dex/widgets/AppTitleWidget.dart';
+import 'package:poke_dex/widgets/PokemonListWidget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,10 +16,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Pokemon"),
+
+      body: Column(
+        children: [
+          AppTitleWidget(),
+          Expanded(
+              child: PokemonListWidget(),
+              ),
+        ],
       ),
-      body: Center(),
     );
   }
 }
