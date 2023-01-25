@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poke_dex/widgets/PokeListItem.dart';
 
 import '../dataHelper/PokemonApi.dart';
 import '../models/Pokemon.dart';
@@ -18,13 +19,15 @@ class _PokemonListWidgetState extends State<PokemonListWidget> {
       builder: (context,snapshot){
         if(snapshot.hasData){
           var pokemonListe = snapshot.data;
-          return ListView.builder(
+          return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1/1
+              ),
               itemCount: pokemonListe!.length,
-              itemBuilder: (context,indeks){
-                var pokemon = pokemonListe[indeks];
-                return ListTile(
-                  title: Text(pokemon.name.toString()),
-                );
+              itemBuilder: (context,index){
+                var pokemon = pokemonListe[index];
+                return PokeListItem(pokemon: pokemon,);
               },
           );
         }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:poke_dex/HomePage.dart';
 import 'package:poke_dex/dataHelper/PokemonApi.dart';
 
@@ -12,13 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PokemonApi.getPokemonData();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
+    return ScreenUtilInit(    //edits the design for different screen sizes accordingly.
+        designSize: const Size(412,732),
+        builder: ((context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData.dark(),
+            home: HomePage(),
+          );
+        }),
     );
   }
 }
