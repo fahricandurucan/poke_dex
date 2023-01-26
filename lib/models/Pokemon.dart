@@ -52,7 +52,7 @@ class Pokemon {
     num: json["num"],
     name: json["name"],
     img: json["img"],
-    type: json["type"] == null ? [] : List<String>.from(json["type"]!.map((x) => x)),
+    type: json["type"] == null ? null : List<String>.from(json["type"]!.map((x) => x)),
     height: json["height"],
     weight: json["weight"],
     candy: json["candy"],
@@ -61,10 +61,10 @@ class Pokemon {
     spawnChance: json["spawn_chance"]?.toDouble(),
     avgSpawns: json["avg_spawns"]?.toDouble(),
     spawnTime: json["spawn_time"],
-    multipliers: json["multipliers"] == null ? [] : List<double>.from(json["multipliers"]!.map((x) => x?.toDouble())),
-    weaknesses: json["weaknesses"] == null ? [] : List<String>.from(json["weaknesses"]!.map((x) => x)),
-    prevEvolution: json["prev_evolution"] == null ? [] : List<Evolution>.from(json["prev_evolution"]!.map((x) => Evolution.fromMap(x))),
-    nextEvolution: json["next_evolution"] == null ? [] : List<Evolution>.from(json["next_evolution"]!.map((x) => Evolution.fromMap(x))),
+    multipliers: json["multipliers"] == null ? null : List<double>.from(json["multipliers"]!.map((x) => x?.toDouble())),
+    weaknesses: json["weaknesses"] == null ? null : List<String>.from(json["weaknesses"]!.map((x) => x)),
+    prevEvolution: json["prev_evolution"] == null ? null : List<Evolution>.from(json["prev_evolution"]!.map((x) => Evolution.fromMap(x))),
+    nextEvolution: json["next_evolution"] == null ? null : List<Evolution>.from(json["next_evolution"]!.map((x) => Evolution.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
@@ -106,4 +106,11 @@ class Evolution {
     "num": num,
     "name": name,
   };
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "$name";
+  }
+
 }
