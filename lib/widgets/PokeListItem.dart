@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:poke_dex/UI_helper/UIHelper.dart';
 
 import '../models/Pokemon.dart';
 
@@ -11,41 +12,48 @@ class PokeListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.green,
+      color: UIHelper.getColorFromType(pokemon.type![0] ?? ""),
       shape: RoundedRectangleBorder(
         borderRadius:BorderRadius.all(Radius.circular(15.w)),
       ),
-      child: Column(
-        children: [
-          Padding(
-              padding: EdgeInsets.all(8.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(pokemon.name.toString(),
-                  style: TextStyle(fontSize: 24),),
-              ],
-            ),
-          ),
-          Padding(
-              padding:EdgeInsets.all(8.w),
-            child: Row(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  height: 40.w,
-                  width: 80.w,
-                  child: Text(pokemon.type![0].toString(),style: TextStyle(fontSize: 18),),
-                  decoration: BoxDecoration(
-                    color: Colors.black26,
-                    borderRadius: BorderRadius.circular(25.w),
+      child: Padding(
+        padding: UIHelper.getDefaultPadding(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(pokemon.name ?? "",
+              style: TextStyle(fontSize: 20.w,fontWeight: FontWeight.bold),),
+           
+            Chip(label: Text(pokemon.type![0])),
+            Expanded(
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Image.asset("images/pokeball.png",
+                      fit: BoxFit.fitHeight,
+                      height: UIHelper.sizeOfPokemonImgAndPokeBall(),
+                      width: UIHelper.sizeOfPokemonImgAndPokeBall(),
+                    ),
                   ),
-                ),
-              ],
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: CachedNetworkImage(
+                      imageUrl: pokemon.img ?? "",
+                      width: UIHelper.sizeOfPokemonImgAndPokeBall(),
+                      height: UIHelper.sizeOfPokemonImgAndPokeBall(),
+                      fit: BoxFit.fitHeight,
+                      placeholder: (context,url) => CircularProgressIndicator(color: Colors.red,),
+                    ),
+                  ),
+                ],
+              ),
+
             ),
-          ),
-          
-        ],
+
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:poke_dex/widgets/PokeListItem.dart';
 
 import '../dataHelper/PokemonApi.dart';
@@ -21,7 +22,7 @@ class _PokemonListWidgetState extends State<PokemonListWidget> {
           var pokemonListe = snapshot.data;
           return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: ScreenUtil().orientation==Orientation.portrait ? 2 : 3,
                 childAspectRatio: 1/1
               ),
               itemCount: pokemonListe!.length,
