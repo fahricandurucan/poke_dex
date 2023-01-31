@@ -27,7 +27,7 @@ class DetailPage extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   icon: Icon(Icons.arrow_back_ios,color: Colors.white,
-                    size: 24.w,
+                    size: 18.w,
                   ),
                 ),
               ],
@@ -60,7 +60,6 @@ class DetailPage extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned(
-
                       child: Image.asset("images/pokeball.png",
                         fit: BoxFit.fitHeight,
                         height: 0.15.sh,
@@ -77,7 +76,7 @@ class DetailPage extends StatelessWidget {
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
                         child: Padding(
-                          padding: UIHelper.getDefaultPadding(),
+                          padding: UIHelper.getIconPadding(),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -93,7 +92,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(10.w),
                         ),
                       ),
                   ),

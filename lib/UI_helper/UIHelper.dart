@@ -20,6 +20,15 @@ class UIHelper{
     }
   }
 
+  static EdgeInsets getIconPadding(){
+    if(ScreenUtil().orientation == Orientation.portrait){
+      return EdgeInsets.all(10.h);
+    }
+    else{
+      return EdgeInsets.all(6.w);
+    }
+  }
+
   static double sizeOfPokemonImgAndPokeBall(){
     if(ScreenUtil().orientation == Orientation.portrait){
       return 0.2.sw;
